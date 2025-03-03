@@ -11,7 +11,7 @@ function Layout({
       <Hero />
       <IdeaNav />
       <section className="border-b border-grid">
-        <div className="flex justify-center h-screen w-full max-w-7xl mx-auto xl:border-grid xl:border-x">
+        <div className="p-4 w-full max-w-7xl mx-auto xl:border-grid xl:border-x">
           {children}
         </div>
       </section>

@@ -1,13 +1,11 @@
 import type { NextRequest } from 'next/server'
+import db from '@/lib/db'
 import { error, success } from '@/lib/server'
-import { PrismaClient } from '@prisma/client'
-
-const prisma = new PrismaClient()
 
 export async function GET(request: NextRequest) {
   try {
     // 尝试执行一个简单的查询来验证连接
-    const users = await prisma.user.findMany({
+    const users = await db.user.findMany({
       take: 1, // 只获取一条记录
     })
 

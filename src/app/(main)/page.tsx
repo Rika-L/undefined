@@ -1,5 +1,4 @@
 'use client'
-import FileUpload from '@/components/file-upload'
 
 function Page() {
   return (

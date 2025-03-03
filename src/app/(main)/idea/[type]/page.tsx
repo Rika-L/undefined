@@ -1,4 +1,4 @@
-function Page({ params }) {
+function Page({ params }: { params: { type: string } }) {
   return (<div>{params.type}</div>)
 }
 

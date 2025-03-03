@@ -1,4 +1,5 @@
-import Hero from '@/components/hero'
+import Hero from '@/components/main/hero'
+import IdeaNav from '@/components/main/idea-nav'
 
 function Layout({
   children,
@@ -8,6 +9,7 @@ function Layout({
   return (
     <main className="min-h-[calc(100vh-64px)]">
       <Hero />
+      <IdeaNav />
       <section className="border-b border-grid">
         <div className="flex justify-center h-screen w-full max-w-7xl mx-auto xl:border-grid xl:border-x">
           {children}

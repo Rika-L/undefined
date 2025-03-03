@@ -41,7 +41,8 @@
       "@prisma/engines",
       "esbuild",
       "prisma",
-      "sharp"
+      "sharp",
+      "@prisma/client"
     ]
   }
 }

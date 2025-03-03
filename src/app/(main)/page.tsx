@@ -1,6 +1,16 @@
+'use client'
+import FileUpload from '@/components/file-upload'
+import { Button } from '@/components/ui/button'
+
 function Page() {
+  async function testPost() {
+    const res = await (await fetch('/api/upload', { method: 'POST' })).json()
+    console.log(res)
+  }
   return (
     <div className="indent-8 text-xl">
+      <Button onClick={testPost}>test Post</Button>
+      <FileUpload />
       <p>
         <code>Undefined</code>
         {' '}

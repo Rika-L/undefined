@@ -1,8 +1,9 @@
 import type { Metadata } from 'next'
+import AppFooter from '@/components/app-footer'
 import AppHeader from '@/components/app-header'
 import { ThemeProvider } from '@/components/theme-provider'
-import { Geist } from 'next/font/google'
 
+import { Geist } from 'next/font/google'
 import './globals.css'
 
 const geist = Geist({
@@ -32,6 +33,7 @@ export default function RootLayout({
         >
           <AppHeader />
           {children}
+          <AppFooter />
         </ThemeProvider>
       </body>
     </html>

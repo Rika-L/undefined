@@ -14,7 +14,6 @@ function AppHeader() {
           <Link href="/">Undefined</Link>
         </div>
         <nav className="flex gap-4 items-center">
-          {[1, 2, 3, 4].map(item => <Link href="/" key={item} className="text-gray-700 hover:text-black dark:text-gray-300 dark:hover:text-white">Home</Link>)}
           <ModeToggle />
           <SignInButton />
         </nav>

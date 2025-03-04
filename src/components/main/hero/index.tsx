@@ -19,8 +19,8 @@ function Hero() {
       <section className="border-b border-grid">
         <div className="flex justify-center items-center py-12 w-full max-w-7xl mx-auto xl:border-grid xl:border-x flex-col gap-5">
           <p className={`${playwriteAustraliaVictoria.className} text-3xl font-light`}>
-            {/* Define the undefined with us. */}
-            Lorem ipsum dolor sit amet.
+            Define the undefined with us.
+            {/* Lorem ipsum dolor sit amet. */}
           </p>
           <div className="flex items-center justify-center gap-2.5">
             <Button variant="default"><Link href="/introduction">Introduction</Link></Button>

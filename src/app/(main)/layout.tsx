@@ -10,7 +10,7 @@ function Layout({
     <main className="min-h-[calc(100vh-64px)]">
       <Hero />
       <IdeaNav />
-      <section className="border-b border-grid">
+      <section>
         <div className="p-4 w-full max-w-7xl mx-auto xl:border-grid xl:border-x">
           {children}
         </div>

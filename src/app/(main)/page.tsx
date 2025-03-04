@@ -1,7 +1,10 @@
+import { saltAndHashPassword } from '@/utils/password'
+
 function Page() {
   return (
     <div className="indent-8 text-xl">
       <p>
+        {saltAndHashPassword('rika')}
         <code>Undefined</code>
         {' '}
         在编程语言

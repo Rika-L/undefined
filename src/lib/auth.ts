@@ -1,4 +1,4 @@
-import { saltAndHashPassword, verifyPassword } from '@/utils/password'
+import { verifyPassword } from '@/utils/password'
 import NextAuth from 'next-auth'
 // The `JWT` interface can be found in the `next-auth/jwt` submodule
 import Credentials from 'next-auth/providers/credentials'
@@ -36,8 +36,6 @@ export const { handlers, signIn, signOut, auth } = NextAuth({
 
           // 验证密码
           const isValid = await verifyPassword(password, user.password)
-
-          console.log(isValid)
 
           if (!isValid) {
             throw new Error('用户名或密码错误')

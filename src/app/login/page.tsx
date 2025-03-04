@@ -38,7 +38,7 @@ export default function LoginPage() {
         router.refresh()
       }
     }
-    catch (err) {
+    catch {
       setError('登录过程中发生错误')
     }
     finally {

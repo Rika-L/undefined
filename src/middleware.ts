@@ -1,9 +1,8 @@
 import { auth } from '@/lib/auth'
 import { NextResponse } from 'next/server'
-import { isLogin } from './utils'
 
 export default auth(async (req) => {
-  const isLoggedIn = await isLogin()
+  const isLoggedIn = !!(await auth())
   const isLoginPage = req.nextUrl.pathname === '/login'
   const isManagePage = req.nextUrl.pathname.startsWith('/manage')
 

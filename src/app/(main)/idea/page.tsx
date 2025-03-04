@@ -1,7 +1,7 @@
 import { redirect } from 'next/navigation'
 
 function Page() {
-  return redirect('/examples/number')
+  return redirect('/idea/date')
 }
 
 export default Page

@@ -2,7 +2,6 @@
 
 import { Skeleton } from '@/components/ui/skeleton'
 import { useTheme } from 'next-themes'
-import Image from 'next/image'
 import { useEffect, useState } from 'react'
 
 function Page() {
@@ -17,7 +16,7 @@ function Page() {
     return <Skeleton className="w-full h-[50vh]" />
 
   return (
-    <div className="indent-8 text-base *:leading-8 flex flex-col gap-4">
+    <>
       <p>
         <code>Undefined</code>
         {' '}
@@ -70,25 +69,23 @@ function Page() {
       <div className="flex justify-center">
         {theme === 'dark'
           ? (
-              <Image
+              <img
                 src="https://cdn.jsdelivr.net/gh/Rika-L/image/20250304150328828.png"
                 alt="暗色流程图"
                 width={850}
                 height={230}
-                priority
               />
             )
           : (
-              <Image
+              <img
                 src="https://cdn.jsdelivr.net/gh/Rika-L/image/20250304150318377.png"
                 alt="亮色流程图"
                 width={850}
                 height={230}
-                priority
               />
             )}
       </div>
-    </div>
+    </>
   )
 }
 

@@ -10,16 +10,8 @@ const menu = [
     path: '/',
   },
   {
-    name: 'String',
-    path: '/idea/string',
-  },
-  {
     name: 'Date',
     path: '/idea/date',
-  },
-  {
-    name: 'Number',
-    path: '/idea/number',
   },
   {
     name: 'Set',

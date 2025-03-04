@@ -1,4 +1,3 @@
-import SignOutButton from '@/components/signout-button'
 import { auth } from '@/lib/auth'
 
 async function Page() {
@@ -6,7 +5,6 @@ async function Page() {
   return (
     <div className="indent-8 text-xl">
       {JSON.stringify(session)}
-      <SignOutButton />
       <p>
         <code>Undefined</code>
         {' '}

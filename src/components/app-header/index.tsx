@@ -1,6 +1,7 @@
 import { Playwrite_AU_VIC } from 'next/font/google'
 import Link from 'next/link'
 import { ModeToggle } from './mode-toggle'
+import SignInButton from './signin-button'
 
 const playwriteAustraliaVictoria = Playwrite_AU_VIC({
   weight: 'variable',
@@ -15,6 +16,7 @@ function AppHeader() {
         <nav className="flex gap-4 items-center">
           {[1, 2, 3, 4].map(item => <Link href="/" key={item} className="text-gray-700 hover:text-black dark:text-gray-300 dark:hover:text-white">Home</Link>)}
           <ModeToggle />
+          <SignInButton />
         </nav>
       </div>
     </header>

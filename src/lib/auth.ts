@@ -1,7 +1,18 @@
-import type { NextAuthConfig } from 'next-auth'
 import NextAuth from 'next-auth'
+// The `JWT` interface can be found in the `next-auth/jwt` submodule
 import Credentials from 'next-auth/providers/credentials'
 import db from './db'
+
+import { signInSchema } from './zod/signIn'
+
+declare module 'next-auth' {
+  /**
+   * Returned by `auth`, `useSession`, `getSession` and received as a prop on the `SessionProvider` React Context
+   */
+  interface User {
+    username: string
+  }
+}
 
 export const { handlers, signIn, signOut, auth } = NextAuth({
   providers: [
@@ -11,32 +22,40 @@ export const { handlers, signIn, signOut, auth } = NextAuth({
         password: {},
       },
       async authorize(credentials) {
-        if (!credentials?.username || !credentials?.password) {
-          throw new Error('请提供用户名和密码')
+        try {
+          const { username, password } = await signInSchema.parseAsync(credentials)
+
+          // 查询用户是否存在
+          const user = await db.user.findUnique({
+            where: { username },
+          })
+
+          if (!user) {
+            throw new Error('用户名或密码错误')
+          }
+
+          // 验证密码
+          const isValid = password === user.password
+
+          if (!isValid) {
+            throw new Error('用户名或密码错误')
+          }
+          // 返回用户信息（不包含密码）
+          return { username }
         }
-
-        // 查询用户是否存在
-        const user = await db.user.findUnique({
-          where: { username: credentials.username },
-        })
-
-        if (!user) {
-          throw new Error('用户名或密码错误')
-        }
-
-        // 验证密码
-        const isValid = credentials.password === user.password
-
-        if (!isValid) {
-          throw new Error('用户名或密码错误')
-        }
-
-        // 返回用户信息（不包含密码）
-        return {
-          id: user.id.toString(),
-          name: user.username,
+        catch {
+        // catch (error) {
+          // if (error instanceof ZodError) {
+          //   // Return `null` to indicate that the credentials are invalid
+          //   return null
+          // }
+          return null
         }
       },
     }),
   ],
-} satisfies NextAuthConfig)
+
+  session: {
+    maxAge: 60 * 60 * 24, // 24 hours
+  },
+})

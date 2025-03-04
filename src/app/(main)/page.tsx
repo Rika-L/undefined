@@ -1,10 +1,6 @@
-import { auth } from '@/lib/auth'
-
-async function Page() {
-  const session = await auth()
+function Page() {
   return (
     <div className="indent-8 text-xl">
-      {JSON.stringify(session)}
       <p>
         <code>Undefined</code>
         {' '}

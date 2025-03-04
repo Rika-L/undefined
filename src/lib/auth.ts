@@ -1,8 +1,9 @@
+import { saltAndHashPassword, verifyPassword } from '@/utils/password'
 import NextAuth from 'next-auth'
 // The `JWT` interface can be found in the `next-auth/jwt` submodule
 import Credentials from 'next-auth/providers/credentials'
-import db from './db'
 
+import db from './db'
 import { signInSchema } from './zod/signIn'
 
 declare module 'next-auth' {
@@ -24,7 +25,6 @@ export const { handlers, signIn, signOut, auth } = NextAuth({
       async authorize(credentials) {
         try {
           const { username, password } = await signInSchema.parseAsync(credentials)
-
           // 查询用户是否存在
           const user = await db.user.findUnique({
             where: { username },
@@ -35,7 +35,9 @@ export const { handlers, signIn, signOut, auth } = NextAuth({
           }
 
           // 验证密码
-          const isValid = password === user.password
+          const isValid = await verifyPassword(password, user.password)
+
+          console.log(isValid)
 
           if (!isValid) {
             throw new Error('用户名或密码错误')

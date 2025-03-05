@@ -3,6 +3,7 @@ import AppFooter from '@/components/app-footer'
 import AppHeader from '@/components/app-header'
 import { ThemeProvider } from '@/components/theme-provider'
 
+import { Toaster } from '@/components/ui/sonner'
 import { Geist } from 'next/font/google'
 import './globals.css'
 
@@ -34,6 +35,7 @@ export default function RootLayout({
           <AppHeader />
           {children}
           <AppFooter />
+          <Toaster />
         </ThemeProvider>
       </body>
     </html>

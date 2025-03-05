@@ -11,8 +11,8 @@ function Layout({
       <Hero />
       <IdeaNav />
       <section>
-        <div className="p-4 w-full max-w-7xl mx-auto xl:border-grid xl:border-x">
-          <div className="indent-8 text-base *:leading-8 flex flex-col gap-4 min-h-[30vh]">
+        <div className="p-4 w-full max-w-7xl mx-auto xl:border-grid xl:border-x h-full min-h-[calc(100vh-659px)] ">
+          <div className="indent-8 text-base *:leading-8 flex flex-col gap-4 h-full">
             {children}
           </div>
         </div>

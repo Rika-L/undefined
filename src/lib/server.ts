@@ -8,6 +8,10 @@ export function error(error: string, status = 500) {
   return NextResponse.json({ error }, { status })
 }
 
+export function unAuth() {
+  return NextResponse.json({ error: 'Not authenticated' }, { status: 401 })
+}
+
 export interface baseResponse<T> {
   code: number
   msg: string

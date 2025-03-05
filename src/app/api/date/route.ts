@@ -2,7 +2,7 @@ import { auth } from '@/lib/auth'
 import db from '@/lib/db'
 import { success, unAuth } from '@/lib/server'
 import { countdownSchema, deleteCountdownSchema, updateCountdownSchema } from '@/lib/zod/date'
-import { serverErrorHandler } from '@/utils'
+import { serverErrorHandler } from '@/utils/serverErrorHandler'
 
 // 获取所有倒计时
 export async function GET() {

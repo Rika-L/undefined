@@ -1,6 +1,4 @@
 'use client'
-import type { baseResponse } from '@/lib/server'
-import type { Countdown } from '@prisma/client'
 import DateForm from '@/components/main/date-form'
 import { Button } from '@/components/ui/button'
 import {
@@ -11,12 +9,11 @@ import {
   TableHeader,
   TableRow,
 } from '@/components/ui/table'
+import { useDate } from '@/hooks/useDate'
 import { Trash } from 'lucide-react'
-import useSwr from 'swr'
 
-const fetcher = (...args: Parameters<typeof fetch>) => fetch(...args).then((res) => res.json())
 function Page() {
-  const { data, error, isLoading, mutate } = useSwr<baseResponse<Countdown[]>>('/api/date', fetcher)
+  const { data, error, isLoading, mutate } = useDate()
 
   const handleCreate = async (formData: { timestamp: string, description: string, type: number }) => {
     try {

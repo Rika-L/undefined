@@ -38,8 +38,7 @@ export const POST = auth(async (req) => {
   catch (err) {
     return serverErrorHandler(err)
   }
-},
-)
+}) as any
 
 // 更新倒计时
 export const PUT = auth(async (req) => {
@@ -63,8 +62,7 @@ export const PUT = auth(async (req) => {
   catch (err) {
     return serverErrorHandler(err)
   }
-},
-)
+}) as any
 
 // 删除倒计时
 export const DELETE = auth(async (req) => {
@@ -81,7 +79,6 @@ export const DELETE = auth(async (req) => {
     return success(countdown)
   }
   catch (err) {
-    serverErrorHandler(err)
+    return serverErrorHandler(err)
   }
-},
-)
+}) as any

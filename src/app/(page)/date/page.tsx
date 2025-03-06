@@ -1,5 +1,6 @@
 'use client'
 
+import CountdownCard from '@/components/countdownCard'
 import { useDate } from '@/hooks/useDate'
 import generateRandomGradient from '@/utils/generateRandomGradient'
 import { motion } from 'motion/react'
@@ -29,7 +30,7 @@ function Page() {
               {i.description}
             </h2>
             <p className="text-gray-200">
-              {i.timestamp.toString()}
+              <CountdownCard timestamp={i.timestamp.valueOf()} />
             </p>
           </motion.div>
         )

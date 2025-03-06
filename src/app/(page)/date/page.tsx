@@ -18,7 +18,7 @@ function Page() {
       <div className="border-grid">
         <Alert className="w-fit">
           <Terminal className="h-4 w-4" />
-          <AlertTitle>這趟旅行若算開心 亦是無負一生</AlertTitle>
+          <AlertTitle>這趟旅行若算開心 亦是無負這一生</AlertTitle>
           <AlertDescription>
             《落花流水》
           </AlertDescription>

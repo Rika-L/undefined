@@ -1,6 +1,7 @@
 import Timeout from '@/components/main/timeout'
 import { Button } from '@/components/ui/button'
 import { ChevronRight } from 'lucide-react'
+import Link from 'next/link'
 
 function Page() {
   return (
@@ -29,8 +30,10 @@ function Page() {
       </p>
       <p>
         <Button>
-          View All
-          <ChevronRight />
+          <Link href="/date" className="flex items-center">
+            View All
+            <ChevronRight />
+          </Link>
         </Button>
       </p>
     </>

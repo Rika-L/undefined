@@ -6,6 +6,7 @@ interface TimeAgo {
   hours: number
   minutes: number
   seconds: number
+  isFuture: boolean
 }
 
 export function useTimeAgo(timestamp: number): TimeAgo {
@@ -14,19 +15,22 @@ export function useTimeAgo(timestamp: number): TimeAgo {
     hours: 0,
     minutes: 0,
     seconds: 0,
+    isFuture: false,
   })
 
   useEffect(() => {
     const calculateTimeAgo = () => {
       const now = moment()
       const then = moment(timestamp)
-      const duration = moment.duration(now.diff(then))
+      const isFuture = then.isAfter(now)
+      const duration = moment.duration(Math.abs(now.diff(then)))
 
       setTimeAgo({
         days: Math.floor(duration.asDays()),
         hours: duration.hours(),
         minutes: duration.minutes(),
         seconds: duration.seconds(),
+        isFuture,
       })
     }
 

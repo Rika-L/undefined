@@ -1,9 +1,11 @@
 'use client'
 
 import CountdownCard from '@/components/countdownCard'
+import { Alert, AlertDescription, AlertTitle } from '@/components/ui/alert'
+
+import { Tabs, TabsContent, TabsList, TabsTrigger } from '@/components/ui/tabs'
 import { useDate } from '@/hooks/useDate'
-import generateRandomGradient from '@/utils/generateRandomGradient'
-import { motion } from 'motion/react'
+import { Terminal } from 'lucide-react'
 
 function Page() {
   const { data, error, isLoading } = useDate()
@@ -12,30 +14,57 @@ function Page() {
   if (error)
     return <div>Error...</div>
   return (
-    <div className="grid grid-cols-2 md:grid-cols-3 xl:grid-cols-4 gap-6">
-      {data?.data.map(i => {
-        const gradient = generateRandomGradient()
-        return (
-          <motion.div
-            key={i.id}
-            transition={{ delay: 0.3, duration: 1 }}
-            initial={{ opacity: 0 }}
-            animate={{ opacity: 1 }}
-            className="rounded-lg p-6 shadow-lg text-white"
-            style={{
-              backgroundImage: `linear-gradient(to right, ${gradient.from}, ${gradient.to})`,
-            }}
-          >
-            <h2 className="text-xl font-semibold mb-2">
-              {i.description}
-            </h2>
-            <p className="text-gray-200">
-              <CountdownCard timestamp={i.timestamp.valueOf()} />
-            </p>
-          </motion.div>
-        )
-      })}
-    </div>
+    <>
+      <div className="border-grid">
+        <Alert className="w-fit">
+          <Terminal className="h-4 w-4" />
+          <AlertTitle>這趟旅行若算開心 亦是無負一生</AlertTitle>
+          <AlertDescription>
+            《落花流水》
+          </AlertDescription>
+        </Alert>
+      </div>
+      <div className="border-grid border-b" />
+      <div className="h-64 flex items-center">
+        占位, 写按年算的生日之类的
+      </div>
+      <div className="border-grid border-b" />
+      <Tabs defaultValue="all" className="w-full">
+        <TabsList className="grid grid-cols-3 w-[400px]">
+          <TabsTrigger value="all">All</TabsTrigger>
+          <TabsTrigger value="past">Past</TabsTrigger>
+          <TabsTrigger value="future">Future</TabsTrigger>
+        </TabsList>
+        <TabsContent value="all">
+          <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 xl:grid-cols-4 gap-6">
+            {data?.data.filter(item => item.type === 1).map(({ timestamp, id, description }, index) => {
+              return (
+                <CountdownCard timestamp={timestamp.valueOf()} key={id} index={index} description={description} />
+              )
+            })}
+          </div>
+        </TabsContent>
+        <TabsContent value="past">
+          <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 xl:grid-cols-4 gap-6">
+            {data?.data.filter(item => item.type === 1).map(({ timestamp, id, description }, index) => {
+              return (
+                <CountdownCard timestamp={timestamp.valueOf()} key={id} index={index} description={description} />
+              )
+            })}
+          </div>
+        </TabsContent>
+        <TabsContent value="future">
+          <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 xl:grid-cols-4 gap-6">
+            {data?.data.filter(item => item.type === 1).map(({ timestamp, id, description }, index) => {
+              return (
+                <CountdownCard timestamp={timestamp.valueOf()} key={id} index={index} description={description} />
+              )
+            })}
+          </div>
+        </TabsContent>
+      </Tabs>
+    </>
+
   )
 }
 

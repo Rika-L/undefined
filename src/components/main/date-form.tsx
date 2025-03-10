@@ -11,10 +11,11 @@ import { useState } from 'react'
 interface DateFormProps {
   type: 'create' | 'edit'
   data?: Countdown
-  onSubmit: (data: { timestamp: string, description: string, type: number }) => void
+  onSubmit: (data: { title: string, timestamp: string, description: string, type: number }) => void
 }
 
 export default function DateForm({ type, data, onSubmit }: DateFormProps) {
+  const [title, setTitle] = useState(data?.title || '')
   const [timestamp, setTimestamp] = useState(data?.timestamp ? new Date(data.timestamp).toISOString().slice(0, 16) : '')
   const [description, setDescription] = useState(data?.description || '')
   const [countdownType, setCountdownType] = useState(data?.type?.toString() || '1')
@@ -23,6 +24,7 @@ export default function DateForm({ type, data, onSubmit }: DateFormProps) {
   const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault()
     onSubmit({
+      title,
       timestamp: new Date(timestamp).toISOString(),
       description,
       type: Number(countdownType),
@@ -79,6 +81,14 @@ export default function DateForm({ type, data, onSubmit }: DateFormProps) {
           <DialogTitle>{type === 'create' ? '新建倒计时' : '编辑倒计时'}</DialogTitle>
         </DialogHeader>
         <form onSubmit={handleSubmit} className="space-y-4">
+          <div className="space-y-2">
+            <Label>标题</Label>
+            <Input
+              value={title}
+              onChange={e => setTitle(e.target.value)}
+              required
+            />
+          </div>
           <div className="space-y-2">
             <Label>时间</Label>
             <Input

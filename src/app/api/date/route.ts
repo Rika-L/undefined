@@ -25,9 +25,10 @@ export const POST = auth(async (req) => {
     if (!req.auth)
       return unAuth()
     const data = await req.json()
-    const { timestamp, description, type } = countdownSchema.parse(data)
+    const { title, timestamp, description, type } = countdownSchema.parse(data)
     const countdown = await db.countdown.create({
       data: {
+        title,
         timestamp: new Date(timestamp),
         description,
         type,
@@ -46,12 +47,13 @@ export const PUT = auth(async (req) => {
     if (!req.auth)
       return unAuth()
     const data = await req.json()
-    const { id, timestamp, description, type } = updateCountdownSchema.parse(data)
+    const { id, title, timestamp, description, type } = updateCountdownSchema.parse(data)
     const countdown = await db.countdown.update({
       where: {
         id,
       },
       data: {
+        title,
         timestamp: new Date(timestamp),
         description,
         type,

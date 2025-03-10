@@ -8,6 +8,7 @@ enum CountdownType {
 
 // 创建和更新倒计时的基础schema
 export const countdownSchema = z.object({
+  title: z.string().min(1, { message: '标题不能为空' }).max(50, { message: '标题不能超过50个字符' }),
   timestamp: z.string().datetime({ message: '请输入有效的日期时间' }),
   description: z.string().min(1, { message: '描述不能为空' }).max(100, { message: '描述不能超过100个字符' }),
   type: z.number().int().min(1).max(2).default(CountdownType.NORMAL),

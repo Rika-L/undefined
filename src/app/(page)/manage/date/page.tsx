@@ -68,6 +68,7 @@ function Page() {
         <TableHeader>
           <TableRow>
             <TableHead>时间</TableHead>
+            <TableHead>标题</TableHead>
             <TableHead>描述</TableHead>
             <TableHead>类型</TableHead>
             <TableHead>操作</TableHead>
@@ -77,6 +78,7 @@ function Page() {
           {data?.data.map(item => (
             <TableRow key={item.id}>
               <TableCell>{new Date(item.timestamp).toLocaleString()}</TableCell>
+              <TableCell>{item.title}</TableCell>
               <TableCell>{item.description}</TableCell>
               <TableCell>{item.type === 1 ? '普通倒计时' : '纪念日'}</TableCell>
               <TableCell>

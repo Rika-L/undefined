@@ -1,3 +1,4 @@
+import Glow from '@/components/glow'
 import Hero from '@/components/main/hero'
 import IdeaNav from '@/components/main/idea-nav'
 
@@ -7,7 +8,8 @@ function Layout({
   children: React.ReactNode
 }>) {
   return (
-    <main>
+    <main suppressHydrationWarning>
+      <Glow />
       <Hero />
       <IdeaNav />
       <section>

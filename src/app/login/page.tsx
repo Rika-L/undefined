@@ -30,8 +30,8 @@ export default function LoginPage() {
         redirect: false,
       })
 
-      if (result?.error) {
-        setError(result.error)
+      if (result?.code) {
+        setError(result.code)
       }
       else {
         router.push('/manage')

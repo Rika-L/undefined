@@ -1,10 +1,14 @@
 import { verifyPassword } from '@/utils/password'
-import NextAuth from 'next-auth'
+import NextAuth, { CredentialsSignin } from 'next-auth'
 // The `JWT` interface can be found in the `next-auth/jwt` submodule
 import Credentials from 'next-auth/providers/credentials'
 
 import db from './db'
 import { signInSchema } from './zod/signIn'
+
+class InvalidLoginError extends CredentialsSignin {
+  code = '用户名或密码错误' // 这里可以自定义你想要显示的错误信息
+}
 
 declare module 'next-auth' {
   /**
@@ -49,7 +53,7 @@ export const { handlers, signIn, signOut, auth } = NextAuth({
           //   // Return `null` to indicate that the credentials are invalid
           //   return null
           // }
-          return null
+          throw new InvalidLoginError()
         }
       },
     }),

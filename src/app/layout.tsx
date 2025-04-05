@@ -1,8 +1,9 @@
 import type { Metadata } from 'next'
 import AppFooter from '@/components/app-footer'
 import AppHeader from '@/components/app-header'
-import { ThemeProvider } from '@/components/theme-provider'
+import { MouseFollower } from '@/components/mouse-follower'
 
+import { ThemeProvider } from '@/components/theme-provider'
 import { Toaster } from '@/components/ui/sonner'
 import { Geist } from 'next/font/google'
 import './globals.css'
@@ -32,6 +33,7 @@ export default function RootLayout({
           enableSystem
           disableTransitionOnChange
         >
+          <MouseFollower />
           <AppHeader />
           {children}
           <AppFooter />
